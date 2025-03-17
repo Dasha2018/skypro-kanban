@@ -1,19 +1,7 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import "./Card.css";
 
 const Card = ({ card }) => {
-  // Состояние для отслеживания загрузки данных
-  const [isLoading, setIsLoading] = useState(true);
-
-  // Имитация загрузки данных (например, через setTimeout)
-  useEffect(() => {
-    const timer = setTimeout(() => {
-      setIsLoading(false); // Загрузка завершена через 2 секунды
-    }, 2000);
-
-    return () => clearTimeout(timer); // Очищаем таймер при размонтировании
-  }, []);
-
   // Объект с классами для каждой темы
   const themeClasses = {
     "Web Design": "_orange",
@@ -23,10 +11,6 @@ const Card = ({ card }) => {
 
   // Извлекаем класс для текущей темы, если он есть
   const topicClass = themeClasses[card.topic] || "";
-
-  if (isLoading) {
-    return <div className="loading-message">Данные загружаются...</div>;
-  }
 
   return (
     <div className="cards__item">
