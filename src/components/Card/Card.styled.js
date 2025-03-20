@@ -1,15 +1,18 @@
-.cards {
+import styled from "styled-components";
+
+export const CarsdsContainer = styled.div`
   width: 100%;
   display: block;
   position: relative;
-}
-.cards__item {
+`;
+
+export const CardsItem = styled.div`
   padding: 5px;
   animation-name: card-animation;
   animation-duration: 500ms;
   animation-timing-function: linear;
-}
-.cards__card {
+`;
+export const CardsCard = styled.div`
   width: 220px;
   height: 130px;
   background-color: #ffffff;
@@ -19,86 +22,91 @@
   align-items: flex-start;
   justify-content: stretch;
   padding: 15px 13px 19px;
-}
+`;
 
-.card__group {
+export const CardGroup = styled.div`
   width: 100%;
   height: 20px;
   margin-bottom: 12px;
   display: flex;
   align-items: center;
   justify-content: space-between;
-}
-.card__theme {
+`;
+
+export const CardTheme = styled.div`
   width: auto;
   height: 20px;
   padding: 5px 14px;
   border-radius: 18px;
-}
-.card__theme p {
+`;
+
+export const CardThemeTopic = styled.p`
   font-size: 10px;
   font-weight: 600;
   line-height: 10px;
-}
-.card__btn {
+`;
+
+export const CardButton = styled.a`
   width: 24px;
   height: 24px;
   display: flex;
   align-items: center;
   justify-content: space-around;
   padding: 2px;
-}
-.card__btn div {
+`;
+
+export const CardBtn = styled.div`
   width: 4px;
   height: 4px;
   border-radius: 50%;
   background-color: #94a6be;
-}
-.card__title {
+`;
+
+export const CardTitle = styled.h3`
   font-size: 14px;
   font-weight: 500;
   line-height: 18px;
   color: #000000;
   margin-bottom: 10px;
-}
-.card__content {
+`;
+export const CardContent = styled.div`
   height: 64px;
   display: flex;
   flex-direction: column;
   align-items: flex-start;
   justify-content: space-between;
-}
-.card__date {
+`;
+
+export const CardDate = styled.div`
   display: flex;
   align-items: center;
   justify-content: flex-start;
-}
-.card__date svg {
-  width: 13px;
-}
-.card__date p {
-  margin-left: 6px;
-  font-size: 10px;
-  line-height: 13px;
-  color: #94a6be;
-  letter-spacing: 0.2px;
-}
-._orange {
-  background-color: #ffe4c2;
-  color: #ff6d00;
-}
 
-._green {
-  background-color: #b4fdd1;
-  color: #06b16e;
-}
+  svg {
+    width: 13px;
+  }
 
-._purple {
-  background-color: #e9d4ff;
-  color: #9a48f1;
-}
+  p {
+    margin-left: 6px;
+    font-size: 10px;
+    line-height: 13px;
+    color: #94a6be;
+    letter-spacing: 0.2px;
+  }
+`;
 
-._gray {
-  background: #94a6be;
-  color: #ffffff;
-}
+
+export const themeStyles = {
+  "Web Design": {
+    background: "#ffe4c2",
+    color: "#ff6d00",
+  },
+  Research: {
+    background: "#b4fdd1",
+    color: "#06b16e",
+  },
+  Copywriting: {
+    background: "#e9d4ff",
+    color: "#9a48f1",
+  },
+};
