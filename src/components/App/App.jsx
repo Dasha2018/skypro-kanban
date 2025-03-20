@@ -3,6 +3,22 @@ import Header from "../Header/Header.jsx";
 import cardList from "../../data.js";
 import Column from "../Column/Column.jsx";
 import "./App.css";
+import {
+  AppLoadingMessage,
+  AppWrapper,
+  PopExit,
+  PopExitContainer,
+  PopExitBlock,
+  PopExitTtl,
+  PopExitForm,
+  PopExitFormGroup,
+  PopExitBtnYes,
+  PopExitBtnNo,
+  Main,
+  MainContainer,
+  MainBlock,
+  MainContent,
+} from "./App.styled.js";
 import PopBrowse from "../popups/PopBrowse/PopBrowse.jsx";
 import PopNewCard from "../popups/PopNewCard/PopNewCard.jsx";
 
@@ -33,44 +49,40 @@ function App() {
     return () => clearTimeout(timer); // Очищаем таймер при размонтировании
   }, []);
   if (isLoading) {
-    return <div className="loading-message">Данные загружаются...</div>;
+    return <AppLoadingMessage>Данные загружаются...</AppLoadingMessage>;
   }
 
   return (
     <>
-      <div className="wrapper">
-        {/* pop-up start */}
-        <div className="pop-exit" id="popExit">
-          <div className="pop-exit__container">
-            <div className="pop-exit__block">
-              <div className="pop-exit__ttl">
+      <AppWrapper>
+        <PopExit id="popExit">
+          <PopExitContainer>
+            <PopExitBlock>
+              <PopExitTtl>
                 <h2>Выйти из аккаунта?</h2>
-              </div>
-              <form className="pop-exit__form" id="formExit" action="#">
-                <div className="pop-exit__form-group">
-                  <button className="pop-exit__exit-yes _hover01" id="exitYes">
+              </PopExitTtl>
+              <PopExitForm id="formExit" action="#">
+                <PopExitFormGroup>
+                  <PopExitBtnYes id="exitYes">
                     <a href="modal/signin.html">Да, выйти</a>
-                  </button>
-                  <button className="pop-exit__exit-no _hover03" id="exitNo">
+                  </PopExitBtnYes>
+                  <PopExitBtnNo id="exitNo">
                     <a href="main.html">Нет, остаться</a>
-                  </button>
-                </div>
-              </form>
-            </div>
-          </div>
-        </div>
+                  </PopExitBtnNo>
+                </PopExitFormGroup>
+              </PopExitForm>
+            </PopExitBlock>
+          </PopExitContainer>
+        </PopExit>
         <PopNewCard />
         <PopBrowse />
-       
-
-        {/* pop-up end */}
 
         <Header />
 
-        <main className="main">
-          <div className="container">
-            <div className="main__block">
-              <div className="main__content">
+        <Main>
+          <MainContainer>
+            <MainBlock>
+              <MainContent>
                 {columns.map((status) => (
                   <Column
                     key={status}
@@ -78,11 +90,11 @@ function App() {
                     cards={groupedCards[status] || []}
                   />
                 ))}
-              </div>
-            </div>
-          </div>
-        </main>
-      </div>
+              </MainContent>
+            </MainBlock>
+          </MainContainer>
+        </Main>
+      </AppWrapper>
     </>
   );
 }

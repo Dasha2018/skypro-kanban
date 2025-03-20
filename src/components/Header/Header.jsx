@@ -1,32 +1,41 @@
 import React from "react";
 
-import "./Header.css";
+import "./Header.styled.js";
 import UserProfile from "../popups/PopUser/PopUser.jsx";
+
+import {
+  HeaderContainer,
+  ContainerH,
+  HeaderBlock,
+  HeaderLogo,
+  HeaderNav,
+  HeaderBtn,
+} from "./Header.styled.js";
 
 function Header() {
   return (
-    <header className="header">
-      <div className="container">
-        <div className="header__block">
-          <div className="header__logo _show _light">
+    <HeaderContainer>
+      <ContainerH>
+        <HeaderBlock>
+          <HeaderLogo HeaderLogo className="_light">
             <a href="" target="_self">
               <img src="images/logo.png" alt="logo" />
             </a>
-          </div>
-          <div className="header__logo _dark">
+          </HeaderLogo>
+          <HeaderLogo className="_dark">
             <a href="" target="_self">
               <img src="images/logo_dark.png" alt="logo" />
             </a>
-          </div>
-          <nav className="header__nav">
-            <button className="header__btn-main-new _hover01" id="btnMainNew">
+          </HeaderLogo>
+          <HeaderNav>
+            <HeaderBtn className="_hover01" id="btnMainNew">
               <a href="#popNewCard">Создать новую задачу</a>
-            </button>
+            </HeaderBtn>
             <UserProfile />
-          </nav>
-        </div>
-      </div>
-    </header>
+          </HeaderNav>
+        </HeaderBlock>
+      </ContainerH>
+    </HeaderContainer>
   );
 }
 export default Header;

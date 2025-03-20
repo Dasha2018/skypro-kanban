@@ -1,21 +1,26 @@
 import React from "react";
 import Card from "../Card/Card.jsx";
-import "./Column.css";
+import {
+  Container,
+  Title,
+  CardsContainer,
+  EmptyColumnMessage,
+} from "./Column.styled.js";
 
 const Column = ({ title, cards }) => {
   return (
-    <div className="main__column column">
-      <div className="column__title">
+    <Container>
+      <Title>
         <p>{title}</p>
-      </div>
-      <div className="cards">
+      </Title>
+      <CardsContainer>
         {cards.length > 0 ? (
           cards.map((card) => <Card key={card.id} card={card} />)
         ) : (
-          <p className="empty-column">Нет задач</p>
+          <EmptyColumnMessage>Нет задач</EmptyColumnMessage>
         )}
-      </div>
-    </div>
+      </CardsContainer>
+    </Container>
   );
 };
 
