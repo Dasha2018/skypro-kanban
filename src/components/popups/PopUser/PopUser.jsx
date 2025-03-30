@@ -1,5 +1,13 @@
 import React, { useState, useEffect } from "react";
-import "./PopUser.css";
+import {
+  HeaderUser,
+  HeaderPopUserSet,
+  PopUserSetMail,
+  PopUserSetName,
+  PopUserSetTheme,
+  Checkbox,
+  ExitButton,
+} from "./PopUser.styled.js";
 
 const UserProfile = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -29,26 +37,22 @@ const UserProfile = () => {
 
   return (
     <div>
-      <a
-        href="#user-set-target"
-        className="header__user _hover02"
-        onClick={toggleModal}
-      >
+      <HeaderUser href="#user-set-target" onClick={toggleModal}>
         Ivan Ivanov
-      </a>
+      </HeaderUser>
 
       {isModalOpen && (
-        <div className="header__pop-user-set pop-user-set" id="user-set-target">
-          <p className="pop-user-set__name">Ivan Ivanov</p>
-          <p className="pop-user-set__mail">ivan.ivanov@gmail.com</p>
-          <div className="pop-user-set__theme">
+        <HeaderPopUserSet className="pop-user-set" id="user-set-target">
+          <PopUserSetName>Ivan Ivanov</PopUserSetName>
+          <PopUserSetMail>ivan.ivanov@gmail.com</PopUserSetMail>
+          <PopUserSetTheme>
             <p>Темная тема</p>
-            <input type="checkbox" className="checkbox" name="checkbox" />
-          </div>
-          <button type="button" className="_hover03">
+            <Checkbox className="checkbox" name="checkbox" />
+          </PopUserSetTheme>
+          <ExitButton type="button">
             <a href="#popExit">Выйти</a>
-          </button>
-        </div>
+          </ExitButton>
+        </HeaderPopUserSet>
       )}
     </div>
   );
