@@ -17,7 +17,7 @@ function Header() {
     <HeaderContainer>
       <ContainerH>
         <HeaderBlock>
-          <HeaderLogo HeaderLogo className="_light">
+          <HeaderLogo  className="_light">
             <a href="" target="_self">
               <img src="images/logo.png" alt="logo" />
             </a>

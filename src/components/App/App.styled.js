@@ -49,36 +49,33 @@ export const AppWrapper = styled.div`
 `;
 
 export const PopExit = styled.div`
-  display: none;
+ 
   width: 100%;
   height: 100%;
   min-width: 320px;
   min-height: 100vh;
-  position: absolute;
+  position: fixed; /* Используем fixed, чтобы окно было поверх других элементов */
   top: 0;
   left: 0;
-  z-index: 5;
-  &:target {
-    display: block;
-  }
+  z-index: 9999; /* Увеличиваем z-index для попапа */
+  background: rgba(0, 0, 0, 0.5); /* Затемнение фона */
+  display: ${({ isVisible }) => (isVisible ? 'block' : 'none')}; /* Условное отображение */
+
 `;
 
 export const PopExitContainer = styled.div`
-  width: 100%;
-  height: 100%;
-  min-height: 100vh;
-  padding: 0 16px;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  background: rgba(0, 0, 0, 0.4);
+  width: 100%;
+  height: 100%;
+  padding: 0 16px; /* Если вам нужно добавить немного отступов по бокам */
 `;
+
 export const PopExitBlock = styled.div`
-  display: block;
-  margin: 0 auto;
   background-color: #ffffff;
-  max-width: 370px;
+  max-width: 370px; /* Ограничиваем максимальную ширину */
   width: 100%;
   padding: 50px 60px;
   border-radius: 10px;
@@ -149,7 +146,7 @@ export const PopExitBtnNo = styled.button`
   line-height: 21px;
   font-weight: 500;
   letter-spacing: -0.14px;
-  color: #ffffff;
+  color: #565eef;
 
   a {
     width: 100%;
