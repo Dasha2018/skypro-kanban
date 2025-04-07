@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
-import PopBrowse from "../components/Popups/PopBrowse";
-import tasks from "../mock/tasks"; // Или импортируй данные по-другому
+import PopBrowse from "../components/popups/PopBrowse/PopBrowse.jsx";
+import tasks from "../mocktask.jsx";
 import { useParams, useNavigate } from "react-router-dom";
 
 function ViewEditTasks() {
@@ -20,13 +20,7 @@ function ViewEditTasks() {
 
   if (!task) return <div>Загрузка...</div>;
 
-  return (
-    <PopBrowse
-      task={task}
-      onClose={handleClose}
-      // Дополнительно можешь передать onSave, onDelete
-    />
-  );
+  return <PopBrowse task={task} onClose={handleClose} />;
 }
 
 export default ViewEditTasks;
