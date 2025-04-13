@@ -1,5 +1,5 @@
 import { signIn, signUp } from "../../services/auth.js";
-import {  useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import React, { useState } from "react";
 import BaseInput from "../BaseInput/BaseInput.jsx";
 import {
@@ -82,15 +82,17 @@ const AuthForm = ({ isSignUp, setIsAuth }) => {
         ? await signIn({ login: formData.login, password: formData.password })
         : await signUp(formData);
 
-        if (data) {
-          setIsAuth(true); // обновляем глобальное состояние авторизации
-          localStorage.setItem("userInfo", JSON.stringify(data)); // сохраняем пользователя
-          navigate("/");
-        }
+      if (data) {
+        setIsAuth(true); // обновляем глобальное состояние авторизации
+        localStorage.setItem("userInfo", JSON.stringify(data)); // сохраняем пользователя
+        navigate("/");
+      }
     } catch (err) {
-      setError(err.message === "Неверный логин или пароль"
-        ? "Неверный логин или пароль. Пожалуйста, попробуйте снова."
-        : err.message);
+      setError(
+        err.message === "Неверный логин или пароль"
+          ? "Неверный логин или пароль. Пожалуйста, попробуйте снова."
+          : err.message
+      );
     }
   };
 

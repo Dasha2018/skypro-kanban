@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Route, Routes } from "react-router-dom";
-
+import { AppLoadingMessage } from "./App/App.styled.js";
 import MainPage from "../pages/Main.jsx";
 import SignInPage from "../pages/SignIn.jsx";
 import SignUpPage from "../pages/SignUp.jsx";
@@ -12,13 +12,25 @@ import Exit from "../pages/ExitPage.jsx";
 
 function AppRoutes() {
   const [isAuth, setIsAuth] = useState(false);
+  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
+    // Читаем данные пользователя
     const userInfo = localStorage.getItem("userInfo");
+
     if (userInfo) {
-      setIsAuth(true);
+      const parsedUser = JSON.parse(userInfo);
+      if (parsedUser?.token) {
+        setIsAuth(true); // валидный токен — авторизуем
+      }
     }
+
+    setIsLoading(false); // заканчиваем загрузку
   }, []);
+
+  if (isLoading) {
+    return <AppLoadingMessage>Проверка авторизации...</AppLoadingMessage>;
+  }
 
   return (
     <Routes>
