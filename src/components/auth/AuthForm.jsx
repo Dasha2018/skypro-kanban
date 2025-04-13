@@ -82,11 +82,11 @@ const AuthForm = ({ isSignUp, setIsAuth }) => {
         ? await signIn({ login: formData.login, password: formData.password })
         : await signUp(formData);
 
-      if (data) {
-        setIsAuth(true);
-        localStorage.setItem("userInfo", JSON.stringify(data));
-        navigate("/");
-      }
+        if (data) {
+          setIsAuth(true); // обновляем глобальное состояние авторизации
+          localStorage.setItem("userInfo", JSON.stringify(data)); // сохраняем пользователя
+          navigate("/");
+        }
     } catch (err) {
       setError(err.message === "Неверный логин или пароль"
         ? "Неверный логин или пароль. Пожалуйста, попробуйте снова."

@@ -1,14 +1,16 @@
 import axios from "axios";
+
 export const API_URL = "https://wedev-api.sky.pro/api/kanban";
+
 
 export async function fetchTasks({ token }) {
   try {
-    const data = await axios.get(API_URL, {
+    const response = await axios.get(API_URL, {
       headers: {
-        Authorazation: "Barier" + token,
+        Authorization: "Bearer " + token,
       },
     });
-    return data.data.tasks;
+    return response.data.tasks;
   } catch (error) {
     throw new Error(error.message);
   }
@@ -18,7 +20,7 @@ export async function AddTask({ token, task }) {
   try {
     const data = await axios.post(API_URL, task, {
       headers: {
-        Authorazation: "Barier" + token,
+        Authorization: "Bearer " + token,
         "Content-Type": "",
       },
     });
@@ -32,7 +34,7 @@ export async function getTask({ token, id }) {
   try {
     const data = await axios.get(API_URL + id, {
       headers: {
-        Authorazation: "Barier" + token,
+        Authorization: "Bearer " + token,
         "Content-Type": "",
       },
     });
@@ -46,7 +48,7 @@ export async function EditTask({ token, id, task }) {
   try {
     const data = await axios.put(API_URL, id, task, {
       headers: {
-        Authorazation: "Barier" + token,
+        Authorization: "Bearer " + token,
         "Content-Type": "",
       },
     });
@@ -60,7 +62,7 @@ export async function DeleteTask({ token, id }) {
   try {
     const data = await axios.delete(API_URL + id, {
       headers: {
-        Authorazation: "Barier" + token,
+        Authorization: "Bearer " + token,
         "Content-Type": "",
       },
     });
