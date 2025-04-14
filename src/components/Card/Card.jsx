@@ -1,4 +1,6 @@
 import React from "react";
+import styled from "styled-components";
+import { Link, useParams } from "react-router-dom";
 import "./Card.styled.js";
 import {
   CarsdsContainer,
@@ -15,8 +17,15 @@ import {
   themeStyles,
 } from "./Card.styled.js";
 
+const CardID = styled.div`
+  display: flex;
+  &p {
+    font-size: 12px;
+  }
+`;
+
 const Card = ({ card }) => {
-  // Извлекаем класс для текущей темы, если он есть
+  const { id } = useParams(); // Извлекаем id из URL с помощью useParams
   const topicStyle = themeStyles[card.topic] || "";
 
   return (
@@ -27,6 +36,9 @@ const Card = ({ card }) => {
             <CardTheme style={topicStyle}>
               <CardThemeTopic>{card.topic}</CardThemeTopic>
             </CardTheme>
+
+            {/* Если popBrowse — отдельная страница */}
+            {/* <CardButton as={Link} to="/popBrowse"> */}
             <CardButton href="#popBrowse" target="_self">
               <CardBtn />
               <CardBtn />
@@ -34,9 +46,10 @@ const Card = ({ card }) => {
             </CardButton>
           </CardGroup>
           <CardContent>
-            <a href="" target="_blank">
+            <Link to={`/cards/${card.id}`}>
               <CardTitle>{card.title}</CardTitle>
-            </a>
+            </Link>
+
             <CardDate>
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -69,6 +82,19 @@ const Card = ({ card }) => {
               <p>{card.date}</p>
             </CardDate>
           </CardContent>
+          {/* Отображаем id карточки на странице */}
+          <div
+            style={{
+              position: "absolute",
+              bottom: "8px",
+              left: "16px",
+              color: "#A0A0A0",
+              fontSize: "8px",
+            }}
+          >
+            <p>Card ID: {id}</p>{" "}
+            {/* Это будет отображать id карточки, полученный из URL */}
+          </div>
         </CardsCard>
       </CardsItem>
     </CarsdsContainer>
