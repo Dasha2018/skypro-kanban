@@ -49,7 +49,7 @@ const UserProfile = () => {
   const handleExit = () => {
     setPopExitVisible(false);
 
-    navigate("/sign-in");
+    navigate("/exit");
   };
 
   // Закрытие модального окна при клике за пределами
