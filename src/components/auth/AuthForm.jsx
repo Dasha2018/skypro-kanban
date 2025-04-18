@@ -1,6 +1,6 @@
 import { signIn, signUp } from "../../services/auth.js";
 import { useNavigate } from "react-router-dom";
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import BaseInput from "../BaseInput/BaseInput.jsx";
 import {
   BaseButton,
@@ -12,8 +12,11 @@ import {
   StyledLink,
 } from "./AuthForm.styled.js";
 
-const AuthForm = ({ isSignUp, setIsAuth }) => {
+import { AuthContext } from "../../context/AuthContext.js";
+
+const AuthForm = ({ isSignUp }) => {
   const navigate = useNavigate();
+  const { updateUserInfo } = useContext(AuthContext);
 
   // состояние полей
   const [formData, setFormData] = useState({
@@ -83,8 +86,8 @@ const AuthForm = ({ isSignUp, setIsAuth }) => {
         : await signUp(formData);
 
       if (data) {
-        setIsAuth(true); // обновляем глобальное состояние авторизации
-        localStorage.setItem("userInfo", JSON.stringify(data)); // сохраняем пользователя
+        updateUserInfo(data); // обновляем глобальное состояние авторизации
+        /*  localStorage.setItem("userInfo", JSON.stringify(data)); // сохраняем пользователя */
         navigate("/");
       }
     } catch (err) {

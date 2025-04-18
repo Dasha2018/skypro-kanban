@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-import { Link, useParams } from "react-router-dom";
+import { Link } from "react-router-dom";
 import "./Card.styled.js";
 import {
   CarsdsContainer,
@@ -25,7 +25,7 @@ const CardID = styled.div`
 `;
 
 const Card = ({ card }) => {
-  const { id } = useParams(); // Извлекаем id из URL с помощью useParams
+  
   const topicStyle = themeStyles[card.topic] || "";
 
   return (
@@ -92,7 +92,7 @@ const Card = ({ card }) => {
               fontSize: "8px",
             }}
           >
-            <p>Card ID: {id}</p>{" "}
+           <p>Card ID: {card.id}</p>
             {/* Это будет отображать id карточки, полученный из URL */}
           </div>
         </CardsCard>

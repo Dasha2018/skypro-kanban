@@ -13,6 +13,7 @@ import {
 import PopBrowse from "../components/popups/PopBrowse/PopBrowse.jsx";
 import PopNewCard from "../components/popups/PopNewCard/PopNewCard.jsx";
 import { fetchTasks } from "../services/api.js";
+import { TasksProvider } from "../context/TasksProvider.jsx";
 
 const columns = [
   "Без статуса",
@@ -60,26 +61,28 @@ const MainPage = () => {
   }
 
   return (
-    <AppWrapper>
-      <PopNewCard />
-      <PopBrowse />
-      <Header />
-      <Main>
-        <MainContainer>
-          <MainBlock>
-            <MainContent>
-              {columns.map((status) => (
-                <Column
-                  key={status}
-                  title={status}
-                  cards={groupedCards[status] || []}
-                />
-              ))}
-            </MainContent>
-          </MainBlock>
-        </MainContainer>
-      </Main>
-    </AppWrapper>
+    <TasksProvider>
+      <AppWrapper>
+        <PopNewCard />
+        <PopBrowse />
+        <Header />
+        <Main>
+          <MainContainer>
+            <MainBlock>
+              <MainContent>
+                {columns.map((status) => (
+                  <Column
+                    key={status}
+                    title={status}
+                    cards={groupedCards[status] || []}
+                  />
+                ))}
+              </MainContent>
+            </MainBlock>
+          </MainContainer>
+        </Main>
+      </AppWrapper>
+    </TasksProvider>
   );
 };
 
