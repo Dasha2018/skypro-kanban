@@ -37,7 +37,11 @@ export const AppLoadingMessage = styled.div`
   transform: translate(-50%, -50%);
 
   font-size: 20px;
-  color: #333;
+  padding: 200px 200px;
+  border-radius: 50px;
+  background-color: ${({ theme }) =>
+    theme === "dark" ? "#151419" : theme.background};
+  color: ${({ theme }) => theme.textColor};
 `;
 
 export const AppWrapper = styled.div`
@@ -53,13 +57,12 @@ export const PopExit = styled.div`
   height: 100%;
   min-width: 320px;
   min-height: 100vh;
-  position: fixed; /* Используем fixed, чтобы окно было поверх других элементов */
+  position: fixed;
   top: 0;
   left: 0;
-  z-index: 9999; /* Увеличиваем z-index для попапа */
-  background: rgba(0, 0, 0, 0.5); /* Затемнение фона */
-  display: ${({ isVisible }) =>
-    isVisible ? "block" : "none"}; /* Условное отображение */
+  z-index: 9999;
+  background: rgba(0, 0, 0, 0.5);
+  display: ${({ $isVisible }) => ($isVisible ? "block" : "none")};
 `;
 
 export const PopExitContainer = styled.div`
@@ -69,12 +72,12 @@ export const PopExitContainer = styled.div`
   justify-content: center;
   width: 100%;
   height: 100%;
-  padding: 0 16px; /* Если вам нужно добавить немного отступов по бокам */
+  padding: 0 16px;
 `;
 
 export const PopExitBlock = styled.div`
   background-color: ${({ theme }) => theme.cardBackground};
-  max-width: 370px; /* Ограничиваем максимальную ширину */
+  max-width: 370px;
   width: 100%;
   padding: 50px 60px;
   border-radius: 10px;

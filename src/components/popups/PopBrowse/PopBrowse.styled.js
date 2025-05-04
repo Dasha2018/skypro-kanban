@@ -1,5 +1,6 @@
 import styled from "styled-components";
 
+
 export const PopBrowseCnt = styled.div`
   width: 100%;
   height: 100%;
@@ -27,7 +28,7 @@ export const PopBrowseContainer = styled.div`
 export const PopBrowseBlock = styled.div`
   display: block;
   margin: 0 auto;
-  background-color: ${({ theme }) => theme.cardBackground};;
+  background-color: ${({ theme }) => theme.cardBackground};
   max-width: 630px;
   width: 100%;
   padding: 40px 30px 38px;
@@ -53,7 +54,7 @@ export const PopBrowseTopBlock = styled.div`
   margin-bottom: 18px;
 `;
 export const PopBrowseTtl = styled.h3`
-  color:  ${({ theme }) => theme.textColor};;
+  color: ${({ theme }) => theme.textColor};
   font-size: 20px;
   font-weight: 600;
   line-height: 24px;
@@ -81,10 +82,19 @@ export const StatusThemes = styled.div`
 export const StatusTheme = styled.div`
   border-radius: 24px;
   border: 0.7px solid rgba(148, 166, 190, 0.4);
-  color: #94a6be;
   padding: 11px 14px 10px;
   margin-right: 7px;
   margin-bottom: 7px;
+  cursor: pointer;
+
+  background-color: ${({ $isActive }) =>
+    $isActive ? "#94A6BE" : "transparent"};
+
+  color: ${({ $isActive, $themeMode }) => {
+    if ($isActive) return "#FFFFFF";
+    return $themeMode === "dark" ? "#94A6BE" : "#000000";
+  }};
+
   & p {
     font-size: 14px;
     line-height: 1;
@@ -112,7 +122,7 @@ export const FormBrowseArea = styled.textarea`
   width: 100%;
   outline: none;
   padding: 14px;
-  background: ${({ theme }) => theme.background};;
+  background: ${({ theme }) => theme.background};
   border: 0.7px solid rgba(148, 166, 190, 0.4);
   border-radius: 8px;
   font-size: 14px;
@@ -146,7 +156,6 @@ export const PopBrowseBtn = styled.div`
   flex-wrap: wrap;
   align-items: flex-start;
   justify-content: space-between;
-  
 `;
 export const PopBrowseBtnGroup = styled.div`
   gap: 8px;
@@ -156,27 +165,26 @@ export const PopBrowseBtnEdit = styled.button`
   margin-bottom: 10px;
   padding: 0 14px;
   border-radius: 4px;
-  border: 0.7px solid var(--palette-navy-60, #565eef);
+  border: 0.7px solid ${({ theme }) => (theme === "dark" ? "#ffffff" : "#565eef")};
   outline: none;
   background: transparent;
   margin-right: 8px;
 
-
   & a {
-    color: #565eef;
+    color: ${({ theme }) => (theme === "dark" ? "#ffffff" : "#565eef")};
   }
+
   &:hover {
-    background-color: #33399b;
-    color: #ffffff;
+    background-color: ${({ theme }) => (theme === "dark" ? "#ffffff" : "#565eef")};
+    color: ${({ theme }) => (theme === "dark" ? "#000000" : "#ffffff")};
   }
+
   &:hover a {
-    color: #ffffff;
+    color: ${({ theme }) => (theme === "dark" ? "#000000" : "#ffffff")};
   }
 `;
 
 export const PopBrowseBtnDelete = styled(PopBrowseBtnEdit)``;
-
-
 
 export const BtnBrowseCloseEdit = styled.button`
   height: 30px;
@@ -196,5 +204,3 @@ export const BtnBrowseCloseEdit = styled.button`
     background-color: #33399b;
   }
 `;
-
-

@@ -32,7 +32,7 @@ const MainPage = () => {
   const [isPopBrowseOpen, setIsPopBrowseOpen] = useState(false);
   const [groupedCards, setGroupedCards] = useState({}); 
 
-  // Загружаем задачи при монтировании
+  
   useEffect(() => {
     const loadTasks = async () => {
       const userInfo = JSON.parse(localStorage.getItem("userInfo"));
@@ -43,7 +43,7 @@ const MainPage = () => {
       try {
         const data = await fetchTasks({ token });
     
-        // Защита от плохих задач
+     
         const cleanedData = Array.isArray(data)
           ? data.filter((task) => task && task._id && task.title)
           : [];
@@ -57,9 +57,9 @@ const MainPage = () => {
     };
 
     loadTasks();
-  }, []); // Пустой массив зависимостей! Только при загрузке страницы
+  }, []); 
 
-  // Обновляем группировку после изменения задач
+ 
   useEffect(() => {
     const updatedGroupedCards = columns.reduce((acc, status) => {
       acc[status] = tasks.filter((card) => card?.status === status);
@@ -77,7 +77,7 @@ const MainPage = () => {
     try {
       await DeleteTask({ token, id: taskId });
       setTasks((prevTasks) => prevTasks.filter((task) => task?._id !== taskId));
-      setIsPopBrowseOpen(false); // Закрываем попап после удаления
+      setIsPopBrowseOpen(false); 
     } catch (error) {
       console.error("Ошибка удаления задачи:", error.message);
     }
@@ -94,7 +94,7 @@ const MainPage = () => {
     try {
       await EditTask({ token, id: updatedTask._id, task: updatedTask });
   
-      // ПЕРЕЗАГРУЖАЕМ задачи после сохранения
+   
       const data = await fetchTasks({ token });
   
       const cleanedData = Array.isArray(data)

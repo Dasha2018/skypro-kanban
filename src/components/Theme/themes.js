@@ -22,6 +22,7 @@ export const themes = {
     greencolor: "#06B16E",
     purplebackground: "#E9D4FF",
     purplecolor: "#9A48F1",
+    textColorload: "#94A6BE",
   },
   dark: {
     userColor: "#FFFFFF",
@@ -46,5 +47,6 @@ export const themes = {
     greencolor: "#B4FDD1",
     purplebackground: "#9A48F1",
     purplecolor: "#E9D4FF",
+    textColorload: "#ffffff",
   },
 };

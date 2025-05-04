@@ -33,7 +33,6 @@ import {
 } from "./PopNewCard.styled.js";
 
 function PopNewCard({ setTasks }) {
-  // Получаем setTasks через пропсы
   const { addTask } = useContext(TasksContext);
   const titleRef = useRef();
   const descRef = useRef();
@@ -42,13 +41,11 @@ function PopNewCard({ setTasks }) {
   const [isOpen, setIsOpen] = useState(true);
   const { theme } = useContext(ThemeContext);
 
-  // Состояния ошибок
   const [errors, setErrors] = useState({
     title: "",
     description: "",
   });
 
-  // Функция для проверки данных перед отправкой
   const validateFields = () => {
     const newErrors = {
       title: "",
@@ -65,15 +62,12 @@ function PopNewCard({ setTasks }) {
 
     setErrors(newErrors);
 
-    // Если есть ошибки, возвращаем false
     return Object.values(newErrors).every((error) => !error);
   };
 
-  // Функция для создания задачи
   const handleCreateTask = async () => {
-    // Валидация полей перед отправкой
     if (!validateFields()) {
-      return; // Если есть ошибки, не продолжаем выполнение
+      return;
     }
 
     const task = {
@@ -87,16 +81,14 @@ function PopNewCard({ setTasks }) {
     };
 
     try {
-      // Добавляем задачу через API
       const createdTask = await addTask(task);
 
-      // Если задача успешно создана, добавляем её в список
       setTasks((prevTasks) => [...prevTasks, createdTask]);
 
-      setIsOpen(false); // Закрываем окно
+      setIsOpen(false);
       titleRef.current.value = "";
       descRef.current.value = "";
-      setSelectedDate(new Date()); // сбрасываем дату
+      setSelectedDate(new Date());
     } catch (error) {
       console.error("Ошибка при добавлении задачи:", error);
       alert("Ошибка при добавлении задачи");

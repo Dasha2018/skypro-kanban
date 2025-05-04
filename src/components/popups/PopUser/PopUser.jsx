@@ -26,7 +26,7 @@ const UserProfile = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isPopExitVisible, setPopExitVisible] = useState(false);
   const navigate = useNavigate();
-  const { user } = useContext(AuthContext); // Забираем текущего пользователя из контекста
+  const { user } = useContext(AuthContext);
   const { theme, toggleTheme } = useContext(ThemeContext);
 
   const toggleModal = (e) => {
@@ -108,7 +108,7 @@ const UserProfile = () => {
       )}
 
       {isPopExitVisible && (
-        <PopExit isVisible={isPopExitVisible} $themeMode={theme}>
+        <PopExit $isVisible={isPopExitVisible} $themeMode={theme}>
           <PopExitContainer>
             <PopExitBlock $themeMode={theme}>
               <PopExitTtl>

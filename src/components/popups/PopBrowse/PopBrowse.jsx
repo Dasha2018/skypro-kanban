@@ -125,19 +125,19 @@ function PopBrowse({ task, onClose, onDelete, onSave }) {
                     <p>{status}</p>
                   </StatusTheme>
                 ) : (
-                  availableStatuses.map((item) => (
-                    <StatusTheme
-                      key={item}
-                      style={{
-                        backgroundColor: item === status ? "#94A6BE" : "transparent",
-                        color: item === status ? "#FFFFFF" : "#000000",
-                        cursor: "pointer",
-                      }}
-                      onClick={() => setStatus(item)}
-                    >
-                      <p>{item}</p>
-                    </StatusTheme>
-                  ))
+                 availableStatuses.map((item) => (
+  <StatusTheme
+    key={item}
+    style={{
+      backgroundColor: item === status ? "#94A6BE" : "transparent",
+      color: item === status ? "#FFFFFF" : "#000000",
+      cursor: "pointer",
+    }}
+    onClick={() => setStatus(item)}
+  >
+    <p>{item}</p>
+  </StatusTheme>
+))
                 )}
               </StatusThemes>
             </Status>
@@ -202,7 +202,7 @@ function PopBrowse({ task, onClose, onDelete, onSave }) {
                   </>
                 ) : (
                   <>
-                    <PopBrowseBtnEdit onClick={handleSave}>
+                    <PopBrowseBtnEdit theme={theme} onClick={handleSave}>
                       <a href="#">Сохранить</a>
                     </PopBrowseBtnEdit>
                     <PopBrowseBtnDelete onClick={handleCancel}>
