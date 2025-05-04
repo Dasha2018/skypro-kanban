@@ -1,121 +1,132 @@
 import styled from "styled-components";
+import { DayPicker } from "react-day-picker";
+import "react-day-picker/style.css";
+
+export const Calendar = styled(DayPicker)`
+  --rdp-nav_button-height: 6px;
+  --rdp-nav_button-width: 10px;
+  --rdp-day-height: 25px;
+  --rdp-day-width: 25px;
+  --rdp-day_button-height: 25px;
+  --rdp-day_button-width: 25px;
+
+  --rdp-nav-height: 25px;
+  --rdp-cell-width: 25px;
+
+ 
+  --rdp-accent-color: #94a6be; 
+  --rdp-accent-background-color: #94a6be; 
+  --rdp-background-color: transparent;
+
+  --rdp-today-color: white; 
+  --rdp-today-background-color: #94a6be; 
+
+  --rdp-selected-color: white; 
+  --rdp-selected-background-color: #94a6be;
+
+  --rdp-range_middle-background-color: #94a6be;
+  --rdp-range_middle-color: white;
+  --rdp-range_start-background: #94a6be;
+  --rdp-range_start-color: white;
+  --rdp-range_end-background: #94a6be;
+  --rdp-range_end-color: white;
+
+
+  --rdp-day-button-border-radius: 50%;
+
+  .rdp-day {
+    border-radius: 50%;
+    transition: background-color 0.2s ease, color 0.2s ease;
+    color: #94a6be;
+    padding: 1px 1px; 
+  }
+  
+  /* Чтобы убрать стандартный фокус бордер */
+  .rdp-day:focus {
+    outline: none;
+    box-shadow: none;
+  }
+
+
+  .rdp-day:hover {
+    background-color: #eaeef6;
+    color: #94a6be;
+  }
+
+  /* Выбранная дата — залитый круг и белая цифра */
+  .rdp-day_selected {
+    background-color: #94a6be;
+    color: #ffffff;
+  }
+
+  /* Сегодняшняя дата, если нужно */
+  .rdp-day_today {
+    border: none;
+  }
+
+  .rdp-weekday {
+    color: #94a6be;
+  }
+
+  /* Кнопки навигации (стрелки) */
+  .rdp-nav_button {
+    color: #94a6be;
+    background: transparent;
+    border: none;
+  }
+
+  .rdp-nav_button svg {
+    fill: #94a6be;
+  }
+
+  /* Стили дней, которые выбраны */
+  .rdp-day_selected {
+    background-color: #94a6be;
+    color: white;
+  }
+
+  /* Сегодняшний день */
+  .rdp-day_today {
+    background-color: #94a6be;
+    color: white;
+  }
+
+  /* Стили заголовков (названия месяцев, дней недели и т.п.) */
+  .rdp-caption_label,
+  .rdp-head_cell {
+    color: #94a6be;
+    font-family: Roboto;
+    font-weight: 600;
+    font-size: 14px;
+    line-height: 100%;
+    letter-spacing: 0px;
+    text-transform: capitalize;
+  }
+`;
 
 export const CalendarContainer = styled.div`
   width: 182px;
   margin-bottom: 20px;
 `;
 
-export const CalendarContent = styled.div`
-  margin-bottom: 12px;
-`;
-export const CalendarDayNames = styled.div`
-  display: flex;
-  flex-wrap: nowrap;
-  align-items: center;
-  justify-content: space-between;
-  margin: 7px 0;
-  padding: 0 7px;
-`;
-export const CalendarDayName = styled.div`
-  color: #94a6be;
-  font-size: 10px;
-  font-weight: 500;
-  line-height: normal;
-  letter-spacing: -0.2px;
-`;
-
-export const CalendarCells = styled.div`
-  width: 182px;
-  height: 126px;
-  display: flex;
-  flex-wrap: wrap;
-`;
-
-export const CalendarCell = styled.div`
-  width: 22px;
-  height: 22px;
-  margin: 2px;
-  border-radius: 50%;
-  display: flex;
-  flex-wrap: nowrap;
-  align-items: center;
-  justify-content: center;
+export const CalendarP = styled.p`
   color: #94a6be;
   font-size: 10px;
   line-height: 1;
-  letter-spacing: -0.2px;
-  cursor: pointer;
-`;
-
-export const CalendarTtl = styled.p`
-  margin-bottom: 14px;
-  padding: 0 7px;
-`;
-export const CalendarBlocK = styled.div`
-  display: block;
-`;
-export const CalendarNav = styled.div`
-  width: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
   margin-top: 14px;
-  padding: 0 7px;
-`;
-export const CalendarMonth = styled.div`
-  color: #94a6be;
-  font-size: 14px;
-  line-height: 25px;
-  font-weight: 600;
+
+  & span {
+    color:${({ theme }) => theme.textColor};
+  }
 `;
 
 export const CalendarPeriod = styled.div`
   padding: 0 7px;
 `;
 
-export const CalendarP = styled.p`
-  color: #94a6be;
-  font-size: 10px;
-  line-height: 1;
-
-  & span {
-    color: #000000;
-  }
-`;
-export const CalendarNavActions = styled.div`
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-`;
-export const CalendarNavAction = styled.div`
-  width: 18px;
-  height: 25px;
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  &svg {
-    fill: #94a6be;
-  }
+export const CalendarTtl = styled.p`
+  margin-bottom: 14px;
+  padding: 0 7px;
 `;
 
-/* 
 
-
-._other-month {
-  opacity: 0;
-}
-
-._cell-day:hover {
-  color: #94a6be;
-  background-color: #eaeef6;
-}
-
-._active-day {
-  background-color: #94a6be;
-  color: #ffffff;
-}
-
-._current {
-  font-weight: 700;
-} */

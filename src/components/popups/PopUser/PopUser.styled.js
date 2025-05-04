@@ -8,7 +8,8 @@ export const HeaderUser = styled.a`
   justify-content: center;
   font-size: 14px;
   line-height: 20px;
-  color: #565eef;
+
+  color: ${({ theme }) => theme.userColor};
 
   &::after {
     content: "";
@@ -16,19 +17,19 @@ export const HeaderUser = styled.a`
     width: 6px;
     height: 6px;
     border-radius: 1px;
-    border-left: 1.9px solid #565eef;
-    border-bottom: 1.9px solid #565eef;
+    border-left: 1.9px solid ${({ theme }) => theme.userColor};
+    border-bottom: 1.9px solid ${({ theme }) => theme.userColor};
     transform: rotate(-45deg);
     margin: -6px 0 0 5px;
     padding: 0;
   }
 
   &:hover {
-    color: #33399b;
+    color: ${({ theme }) => theme.userHover};
 
     &::after {
-      border-left-color: #33399b;
-      border-bottom-color: #33399b;
+      border-left-color: ${({ theme }) => theme.userHover};
+      border-bottom-color: ${({ theme }) => theme.userHover};
     }
   }
 `;
@@ -38,19 +39,19 @@ export const HeaderPopUserSet = styled.div`
   position: absolute;
   top: 61px;
   right: 0;
-  width: 213px;
+  width: auto;
   height: 205px;
   border-radius: 10px;
   border: 0.7px solid rgba(148, 166, 190, 0.4);
-  background: #fff;
-  box-shadow: 0px 10px 39px 0px rgba(26, 56, 101, 0.21);
+  background: ${({ theme }) => theme.popBgColor};
+  box-shadow: ${({ theme }) => theme.popBoxShadow};
   padding: 34px;
   text-align: center;
   z-index: 2;
 `;
 
 export const PopUserSetName = styled.p`
-  color: #000;
+  color: ${({ theme }) => theme.popNameColor};
   font-size: 14px;
   font-weight: 500;
   line-height: 21px;
@@ -58,7 +59,7 @@ export const PopUserSetName = styled.p`
   margin-bottom: 4px;
 `;
 export const PopUserSetMail = styled.p`
-  color: #94a6be;
+  color: ${({ theme }) => theme.popMailColor};
   font-size: 14px;
   line-height: 21px;
   letter-spacing: -0.14px;
@@ -70,8 +71,9 @@ export const PopUserSetTheme = styled.div`
   align-items: center;
   justify-content: space-between;
   margin-bottom: 30px;
+
   & p {
-    color: #000;
+    color: ${({ theme }) => theme.popTextColor};
     font-size: 14px;
     line-height: 21px;
     letter-spacing: -0.14px;
@@ -94,7 +96,7 @@ export const Checkbox = styled.input.attrs({ type: "checkbox" })`
     width: 11px;
     height: 11px;
     border-radius: 50%;
-    background-color: #94a6be;
+    background-color: ${({ theme }) => theme.toggleColor};
     transition: 0.5s;
   }
 
@@ -107,22 +109,20 @@ export const ExitButton = styled.button`
   width: 72px;
   height: 30px;
   background: transparent;
-  color: #565eef;
+  color: ${({ theme }) => theme.exitButtonColor};
   border-radius: 4px;
-  border: 1px solid #565eef;
+  border: 1px solid ${({ theme }) => theme.exitButtonColor};
 
   a {
-    color: #565eef;
+    color: ${({ theme }) => theme.exitButtonColor};
   }
 
   &:hover {
-    background-color: #33399b;
-    color: #ffffff;
+    background-color: ${({ theme }) => theme.exitButtonHoverBg};
+    color: ${({ theme }) => theme.exitButtonHoverText};
 
     a {
-      color: #ffffff;
+      color: ${({ theme }) => theme.exitButtonHoverText};
     }
   }
 `;
-
-

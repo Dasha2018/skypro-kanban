@@ -17,55 +17,59 @@ export async function fetchTasks({ token }) {
 
 export async function AddTask({ token, task }) {
   try {
-    const data = await axios.post(API_URL, task, {
+    const response = await axios.post(API_URL, task, {
       headers: {
         Authorization: "Bearer " + token,
         "Content-Type": "",
       },
     });
-    return data.data.tasks;
+
+    return response.data.tasks;
   } catch (error) {
     throw new Error(error.message);
   }
 }
 
+// Получение конкретной задачи по id
 export async function getTask({ token, id }) {
   try {
-    const data = await axios.get(API_URL + id, {
+    const response = await axios.get(`${API_URL}/${id}`, {
       headers: {
         Authorization: "Bearer " + token,
         "Content-Type": "",
       },
     });
-    return data.data;
+    return response.data.task;
   } catch (error) {
     throw new Error(error.message);
   }
 }
 
+// Редактирование задачи
 export async function EditTask({ token, id, task }) {
   try {
-    const data = await axios.put(API_URL, id, task, {
+    const response = await axios.put(`${API_URL}/${id}`, task, {
       headers: {
         Authorization: "Bearer " + token,
         "Content-Type": "",
       },
     });
-    return data.data.tasks;
+    return response.data.task;
   } catch (error) {
     throw new Error(error.message);
   }
 }
 
+// Удаление задачи
 export async function DeleteTask({ token, id }) {
   try {
-    const data = await axios.delete(API_URL + id, {
+    const response = await axios.delete(`${API_URL}/${id}`, {
       headers: {
         Authorization: "Bearer " + token,
         "Content-Type": "",
       },
     });
-    return data.data.tasks;
+    return response.data.tasks;
   } catch (error) {
     throw new Error(error.message);
   }

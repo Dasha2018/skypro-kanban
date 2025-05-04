@@ -7,7 +7,7 @@ export const ModalWindowStart = styled.div`
   align-items: center;
   width: 100vw;
   height: 100vh;
-  background: #EAEEF6;
+  background: ${({ theme }) => theme.background};
 `;
 
 export const WrapperWindow = styled.div`
@@ -26,7 +26,7 @@ export const WrapperWindow = styled.div`
   padding-bottom: 50px;
   padding-left: 60px;
   gap: 10px;
-  background: #ffffff;
+  background: ${({ theme }) => theme.cardBackground};
   border: 0.7px solid #d4dbe5 box-shadow 0px 4px 67px -12px #00000021;
 `;
 
@@ -37,7 +37,7 @@ export const WrapperWindowTitle = styled.h2`
   line-height: 150%;
   letter-spacing: -3%;
   text-align: center;
-  color: #000000;
+  color: ${({ theme }) => theme.textColor};
 `;
 
 export const InputStart = styled.div`

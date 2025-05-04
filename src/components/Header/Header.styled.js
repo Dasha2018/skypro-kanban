@@ -3,7 +3,8 @@ import styled from "styled-components";
 export const HeaderContainer = styled.header`
   width: 100%;
   margin: 0 auto;
-  background-color: #ffffff;
+  background-color: ${({ $themeMode }) =>
+    $themeMode === "dark" ? "#20202C" : "#ffffff"};
 `;
 export const ContainerH = styled.div`
   max-width: 1260px;

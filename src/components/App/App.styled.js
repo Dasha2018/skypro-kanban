@@ -37,7 +37,11 @@ export const AppLoadingMessage = styled.div`
   transform: translate(-50%, -50%);
 
   font-size: 20px;
-  color: #333;
+  padding: 200px 200px;
+  border-radius: 50px;
+  background-color: ${({ theme }) =>
+    theme === "dark" ? "#151419" : theme.background};
+  color: ${({ theme }) => theme.textColor};
 `;
 
 export const AppWrapper = styled.div`
@@ -45,22 +49,20 @@ export const AppWrapper = styled.div`
   width: 100vw;
   min-height: 100vh;
   overflow: hidden;
-  background-color: #f1f1f1;
+  background-color: ${({ theme }) => theme.background};
 `;
 
 export const PopExit = styled.div`
- 
   width: 100%;
   height: 100%;
   min-width: 320px;
   min-height: 100vh;
-  position: fixed; /* Используем fixed, чтобы окно было поверх других элементов */
+  position: fixed;
   top: 0;
   left: 0;
-  z-index: 9999; /* Увеличиваем z-index для попапа */
-  background: rgba(0, 0, 0, 0.5); /* Затемнение фона */
-  display: ${({ isVisible }) => (isVisible ? 'block' : 'none')}; /* Условное отображение */
-
+  z-index: 9999;
+  background: rgba(0, 0, 0, 0.5);
+  display: ${({ $isVisible }) => ($isVisible ? "block" : "none")};
 `;
 
 export const PopExitContainer = styled.div`
@@ -70,21 +72,25 @@ export const PopExitContainer = styled.div`
   justify-content: center;
   width: 100%;
   height: 100%;
-  padding: 0 16px; /* Если вам нужно добавить немного отступов по бокам */
+  padding: 0 16px;
 `;
 
 export const PopExitBlock = styled.div`
-  background-color: #ffffff;
-  max-width: 370px; /* Ограничиваем максимальную ширину */
+  background-color: ${({ theme }) => theme.cardBackground};
+  max-width: 370px;
   width: 100%;
   padding: 50px 60px;
   border-radius: 10px;
-  border: 0.7px solid #d4dbe5;
-  box-shadow: 0px 4px 67px -12px rgba(0, 0, 0, 0.13);
+
+  border: 0.7px solid rgba(148, 166, 190, 0.4);
+
+  background: ${({ theme }) => theme.popBgColor};
+  box-shadow: ${({ theme }) => theme.popBoxShadow};
 `;
 
 export const PopExitTtl = styled.div`
   margin-bottom: 20px;
+  color: ${({ theme }) => theme.popNameColor};
   &h2 {
     text-align: center;
     font-size: 20px;
@@ -167,7 +173,7 @@ export const PopExitBtnNo = styled.button`
 
 export const Main = styled.main`
   width: 100%;
-  background-color: #eaeef6;
+  background-color: ${({ theme }) => theme.mainBackground};
 `;
 export const MainContainer = styled.div`
   max-width: 1260px;

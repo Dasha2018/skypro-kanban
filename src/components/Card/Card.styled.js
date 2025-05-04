@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-export const CarsdsContainer = styled.div`
+export const CardsContainer = styled.div`
   width: 100%;
   display: block;
   position: relative;
@@ -15,7 +15,7 @@ export const CardsItem = styled.div`
 export const CardsCard = styled.div`
   width: 220px;
   height: 130px;
-  background-color: #ffffff;
+  background-color: ${({ theme }) => theme.cardBackground};
   border-radius: 10px;
   display: flex;
   flex-direction: column;
@@ -34,16 +34,32 @@ export const CardGroup = styled.div`
 `;
 
 export const CardTheme = styled.div`
-  width: auto;
-  height: 20px;
-  padding: 5px 14px;
   border-radius: 18px;
+  display: contents;
 `;
 
 export const CardThemeTopic = styled.p`
   font-size: 10px;
   font-weight: 600;
   line-height: 10px;
+  padding: 5px 14px;
+  border-radius: 18px;
+  display: inline-block;
+  margin: 0;
+
+  background: ${({ $topic, theme }) =>
+    $topic === "Web Design"
+      ? theme.orangebackground
+      : $topic === "Research"
+      ? theme.greenbackground
+      : theme.purplebackground};
+
+  color: ${({ $topic, theme }) =>
+    $topic === "Web Design"
+      ? theme.orangecolor
+      : $topic === "Research"
+      ? theme.greencolor
+      : theme.purplecolor};
 `;
 
 export const CardButton = styled.a`
@@ -66,7 +82,7 @@ export const CardTitle = styled.h3`
   font-size: 14px;
   font-weight: 500;
   line-height: 18px;
-  color: #000000;
+  color: ${({ theme }) => theme.textColor};
   margin-bottom: 10px;
 `;
 export const CardContent = styled.div`
@@ -94,7 +110,6 @@ export const CardDate = styled.div`
     letter-spacing: 0.2px;
   }
 `;
-
 
 export const themeStyles = {
   "Web Design": {

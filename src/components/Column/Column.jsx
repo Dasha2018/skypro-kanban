@@ -7,7 +7,7 @@ import {
   EmptyColumnMessage,
 } from "./Column.styled.js";
 
-const Column = ({ title, cards }) => {
+const Column = ({ title, cards, onCardOptionsClick }) => {
   return (
     <Container>
       <Title>
@@ -15,7 +15,13 @@ const Column = ({ title, cards }) => {
       </Title>
       <CardsContainer>
         {cards.length > 0 ? (
-          cards.map((card) => <Card key={card.id} card={card} />)
+          cards.map((card) => (
+            <Card
+              key={card._id}
+              card={card}
+              onOptionsClick={onCardOptionsClick}
+            />
+          ))
         ) : (
           <EmptyColumnMessage>Нет задач</EmptyColumnMessage>
         )}

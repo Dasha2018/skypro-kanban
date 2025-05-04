@@ -16,8 +16,8 @@ export const StyledInput = styled.input`
   padding-bottom: 8px;
   padding-left: 10px;
   gap: 10px;
-
-  border: 1px solid ${(props) => (props.$error ? "red" : "#ccc")};  
+  background-color: transparent;
+  border: 1px solid ${(props) => (props.$error ? "red" : "#ccc")};
 
   outline: none;
   transition: border-color 0.3s;

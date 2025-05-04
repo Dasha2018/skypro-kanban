@@ -37,8 +37,7 @@ const AuthProvider = ({ children }) => {
     updateUserInfo(null);
     return true;
   };
-  // В сам провайдер нужно обязательно прокинуть те значения,
-  // которые мы хотим использовать в разных частях приложения
+
   return (
     <AuthContext.Provider value={{ user, login, logout, updateUserInfo }}>
       {children}

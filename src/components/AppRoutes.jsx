@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import { Route, Routes } from "react-router-dom";
 import { AppLoadingMessage } from "./App/App.styled.js";
 import MainPage from "../pages/Main.jsx";
@@ -9,27 +9,32 @@ import PrivateRoute from "./PrivateRoute.jsx";
 import ViewEditTasks from "../pages/ViewEditTask.jsx";
 import AddTask from "../pages/AddTask.jsx";
 import Exit from "../pages/ExitPage.jsx";
+import { ThemeContext } from "../components/Theme/ThemeContext.jsx";
 
 function AppRoutes() {
+  const { theme } = useContext(ThemeContext);
   const [isAuth, setIsAuth] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
-    // Читаем данные пользователя
     const userInfo = localStorage.getItem("userInfo");
 
     if (userInfo) {
       const parsedUser = JSON.parse(userInfo);
       if (parsedUser?.token) {
-        setIsAuth(true); // валидный токен — авторизуем
+        setIsAuth(true);
       }
     }
 
-    setIsLoading(false); // заканчиваем загрузку
+    setIsLoading(false);
   }, []);
 
   if (isLoading) {
-    return <AppLoadingMessage>Проверка авторизации...</AppLoadingMessage>;
+    return (
+      <AppLoadingMessage theme={theme}>
+        Проверка авторизации...
+      </AppLoadingMessage>
+    ); // Передаем тему
   }
 
   return (
