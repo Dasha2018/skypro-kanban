@@ -1,26 +1,18 @@
-import React, { useState, useEffect } from "react";
+import { useParams } from "react-router-dom";
+import { useContext } from "react";
+import { TasksContext } from "../context/TasksContext.js";
 import PopBrowse from "../components/popups/PopBrowse/PopBrowse.jsx";
-import tasks from "../mocktask.jsx";
-import { useParams, useNavigate } from "react-router-dom";
 
-function ViewEditTasks() {
+const ViewEditTasks = () => {
   const { id } = useParams();
-  const navigate = useNavigate();
-  const [task, setTask] = useState(null);
+  const { tasks } = useContext(TasksContext);  
 
-  useEffect(() => {
-    // Ищем задачу по id (в реальности, можно будет сделать fetch из API)
-    const foundTask = tasks.find((t) => t.id === id);
-    setTask(foundTask);
-  }, [id]);
+  const task = tasks.find((t) => t._id === id);
+  if (!task) {
+    return <p>Задача не найдена...</p>;
+  }
 
-  const handleClose = () => {
-    navigate(-1); // Вернуться назад (на канбан-доску)
-  };
-
-  if (!task) return <div>Загрузка...</div>;
-
-  return <PopBrowse task={task} onClose={handleClose} />;
-}
+  return <PopBrowse task={task} />;
+};
 
 export default ViewEditTasks;

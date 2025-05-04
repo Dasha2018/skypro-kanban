@@ -45,11 +45,10 @@ export const AppWrapper = styled.div`
   width: 100vw;
   min-height: 100vh;
   overflow: hidden;
-  background-color: #f1f1f1;
+  background-color: ${({ theme }) => theme.background};
 `;
 
 export const PopExit = styled.div`
- 
   width: 100%;
   height: 100%;
   min-width: 320px;
@@ -59,8 +58,8 @@ export const PopExit = styled.div`
   left: 0;
   z-index: 9999; /* Увеличиваем z-index для попапа */
   background: rgba(0, 0, 0, 0.5); /* Затемнение фона */
-  display: ${({ isVisible }) => (isVisible ? 'block' : 'none')}; /* Условное отображение */
-
+  display: ${({ isVisible }) =>
+    isVisible ? "block" : "none"}; /* Условное отображение */
 `;
 
 export const PopExitContainer = styled.div`
@@ -74,17 +73,21 @@ export const PopExitContainer = styled.div`
 `;
 
 export const PopExitBlock = styled.div`
-  background-color: #ffffff;
+  background-color: ${({ theme }) => theme.cardBackground};
   max-width: 370px; /* Ограничиваем максимальную ширину */
   width: 100%;
   padding: 50px 60px;
   border-radius: 10px;
-  border: 0.7px solid #d4dbe5;
-  box-shadow: 0px 4px 67px -12px rgba(0, 0, 0, 0.13);
+
+  border: 0.7px solid rgba(148, 166, 190, 0.4);
+
+  background: ${({ theme }) => theme.popBgColor};
+  box-shadow: ${({ theme }) => theme.popBoxShadow};
 `;
 
 export const PopExitTtl = styled.div`
   margin-bottom: 20px;
+  color: ${({ theme }) => theme.popNameColor};
   &h2 {
     text-align: center;
     font-size: 20px;
@@ -167,7 +170,7 @@ export const PopExitBtnNo = styled.button`
 
 export const Main = styled.main`
   width: 100%;
-  background-color: #eaeef6;
+  background-color: ${({ theme }) => theme.mainBackground};
 `;
 export const MainContainer = styled.div`
   max-width: 1260px;

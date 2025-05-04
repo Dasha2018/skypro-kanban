@@ -1,5 +1,7 @@
-import React, { useState, useEffect } from "react";
-import { useNavigate } from "react-router-dom"; // Хук для навигации
+import React, { useState, useEffect, useContext } from "react";
+import { AuthContext } from "../../../context/AuthContext.js";
+import { useNavigate } from "react-router-dom";
+import { ThemeContext } from "../../Theme/ThemeContext.jsx";
 import {
   HeaderUser,
   HeaderPopUserSet,
@@ -9,7 +11,6 @@ import {
   Checkbox,
   ExitButton,
 } from "./PopUser.styled.js";
-
 import {
   PopExit,
   PopExitContainer,
@@ -22,37 +23,32 @@ import {
 } from "../../App/App.styled.js";
 
 const UserProfile = () => {
-  const [isModalOpen, setIsModalOpen] = useState(false); // Состояние для открытия HeaderPopUserSet
-  const [isPopExitVisible, setPopExitVisible] = useState(false); // Состояние для отображения PopExit
-  const navigate = useNavigate(); // Хук для навигации
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [isPopExitVisible, setPopExitVisible] = useState(false);
+  const navigate = useNavigate();
+  const { user } = useContext(AuthContext); // Забираем текущего пользователя из контекста
+  const { theme, toggleTheme } = useContext(ThemeContext);
 
-  // Функция для переключения модального окна HeaderPopUserSet
   const toggleModal = (e) => {
     e.preventDefault();
     e.stopPropagation();
     setIsModalOpen(!isModalOpen);
   };
 
-  // Функция для открытия PopExit
   const handleOpenPopExit = (e) => {
     e.preventDefault();
-    console.log("Кнопка выхода нажата");
     setPopExitVisible(true);
   };
 
-  // Функция для закрытия PopExit
   const handleClosePopExit = () => {
     setPopExitVisible(false);
   };
 
-  // Функция для выхода
   const handleExit = () => {
     setPopExitVisible(false);
-
     navigate("/exit");
   };
 
-  // Закрытие модального окна при клике за пределами
   useEffect(() => {
     const handleClickOutside = (e) => {
       if (
@@ -78,19 +74,28 @@ const UserProfile = () => {
     };
   }, [isModalOpen, isPopExitVisible]);
 
+  if (!user) {
+    return null; // Или можно показать "Загрузка..."
+  }
+
   return (
     <div>
       <HeaderUser href="#user-set-target" onClick={toggleModal}>
-        Ivan Ivanov
+        {user.name}
       </HeaderUser>
 
       {isModalOpen && (
         <HeaderPopUserSet className="pop-user-set" id="user-set-target">
-          <PopUserSetName>Ivan Ivanov</PopUserSetName>
-          <PopUserSetMail>ivan.ivanov@gmail.com</PopUserSetMail>
-          <PopUserSetTheme>
-            <p>Темная тема</p>
-            <Checkbox className="checkbox" name="checkbox" />
+          <PopUserSetName>{user.name}</PopUserSetName>
+          <PopUserSetMail>{user.login}</PopUserSetMail>
+          <PopUserSetTheme onClick={toggleTheme}>
+            <p>{theme === "dark" ? "Темная тема" : " Светлая тема"}</p>
+            <Checkbox
+              className="checkbox"
+              name="checkbox"
+              checked={theme === "dark"}
+              readOnly
+            />
           </PopUserSetTheme>
           <ExitButton
             className="exit-button"
@@ -103,12 +108,9 @@ const UserProfile = () => {
       )}
 
       {isPopExitVisible && (
-        <PopExit
-          className="pop-exit"
-          style={{ display: isPopExitVisible ? "block" : "none" }}
-        >
+        <PopExit isVisible={isPopExitVisible} $themeMode={theme}>
           <PopExitContainer>
-            <PopExitBlock>
+            <PopExitBlock $themeMode={theme}>
               <PopExitTtl>
                 <h2>Выйти из аккаунта?</h2>
               </PopExitTtl>

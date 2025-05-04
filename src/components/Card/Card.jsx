@@ -1,9 +1,7 @@
-import React from "react";
-import styled from "styled-components";
-import { Link } from "react-router-dom";
 import "./Card.styled.js";
+import { format } from "date-fns";
 import {
-  CarsdsContainer,
+  CardsContainer,
   CardsItem,
   CardsCard,
   CardGroup,
@@ -14,41 +12,32 @@ import {
   CardTitle,
   CardContent,
   CardDate,
-  themeStyles,
+
 } from "./Card.styled.js";
 
-const CardID = styled.div`
-  display: flex;
-  &p {
-    font-size: 12px;
-  }
-`;
+const Card = ({ card, onOptionsClick }) => {
 
-const Card = ({ card }) => {
-  
-  const topicStyle = themeStyles[card.topic] || "";
 
   return (
-    <CarsdsContainer>
+    <CardsContainer>
       <CardsItem>
         <CardsCard>
           <CardGroup>
-            <CardTheme style={topicStyle}>
-              <CardThemeTopic>{card.topic}</CardThemeTopic>
-            </CardTheme>
+          <CardTheme>
+  <CardThemeTopic $topic={card.topic}>
+    {card.topic}
+  </CardThemeTopic>
+</CardTheme>
 
-            {/* Если popBrowse — отдельная страница */}
-            {/* <CardButton as={Link} to="/popBrowse"> */}
-            <CardButton href="#popBrowse" target="_self">
+            {/* Кнопка с тремя точками */}
+            <CardButton type="button" onClick={() => onOptionsClick(card)}>
               <CardBtn />
               <CardBtn />
               <CardBtn />
             </CardButton>
           </CardGroup>
           <CardContent>
-            <Link to={`/cards/${card.id}`}>
-              <CardTitle>{card.title}</CardTitle>
-            </Link>
+            <CardTitle>{card.title}</CardTitle>
 
             <CardDate>
               <svg
@@ -79,25 +68,12 @@ const Card = ({ card }) => {
                   </clipPath>
                 </defs>
               </svg>
-              <p>{card.date}</p>
+              <p>{format(new Date(card.date), "dd.MM.yyyy")}</p>
             </CardDate>
           </CardContent>
-          {/* Отображаем id карточки на странице */}
-          <div
-            style={{
-              position: "absolute",
-              bottom: "8px",
-              left: "16px",
-              color: "#A0A0A0",
-              fontSize: "8px",
-            }}
-          >
-           <p>Card ID: {card.id}</p>
-            {/* Это будет отображать id карточки, полученный из URL */}
-          </div>
         </CardsCard>
       </CardsItem>
-    </CarsdsContainer>
+    </CardsContainer>
   );
 };
 

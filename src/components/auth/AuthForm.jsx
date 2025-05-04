@@ -1,4 +1,5 @@
 import { signIn, signUp } from "../../services/auth.js";
+import { ThemeContext } from "../Theme/ThemeContext.jsx";
 import { useNavigate } from "react-router-dom";
 import React, { useContext, useState } from "react";
 import BaseInput from "../BaseInput/BaseInput.jsx";
@@ -16,6 +17,7 @@ import { AuthContext } from "../../context/AuthContext.js";
 
 const AuthForm = ({ isSignUp }) => {
   const navigate = useNavigate();
+  const { theme } = useContext(ThemeContext);
   const { updateUserInfo } = useContext(AuthContext);
 
   // состояние полей
@@ -50,6 +52,14 @@ const AuthForm = ({ isSignUp }) => {
       newErrors.login = true;
       setError("Заполните все поля");
       isValid = false;
+    } else {
+      // Проверка правильности email
+      const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+      if (!emailRegex.test(formData.login)) {
+        newErrors.login = true;
+        setError("Введите корректный адрес электронной почты");
+        isValid = false;
+      }
     }
 
     if (!formData.password.trim()) {
@@ -86,8 +96,7 @@ const AuthForm = ({ isSignUp }) => {
         : await signUp(formData);
 
       if (data) {
-        updateUserInfo(data); // обновляем глобальное состояние авторизации
-        /*  localStorage.setItem("userInfo", JSON.stringify(data)); // сохраняем пользователя */
+        updateUserInfo(data);
         navigate("/");
       }
     } catch (err) {
@@ -101,7 +110,7 @@ const AuthForm = ({ isSignUp }) => {
 
   return (
     <div className="bg">
-      <ModalWindowStart>
+      <ModalWindowStart $themeMode={theme}>
         <WrapperWindow>
           <WrapperWindowTitle>
             {isSignUp ? "Регистрация" : "Вход"}

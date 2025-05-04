@@ -1,5 +1,5 @@
-import React from "react";
-
+import React, { useContext } from "react";
+import { ThemeContext } from "../Theme/ThemeContext.jsx";
 import "./Header.styled.js";
 import UserProfile from "../popups/PopUser/PopUser.jsx";
 
@@ -13,22 +13,24 @@ import {
 } from "./Header.styled.js";
 
 function Header() {
+  const { theme } = useContext(ThemeContext);
+
   return (
-    <HeaderContainer>
+    <HeaderContainer $themeMode={theme}>
       <ContainerH>
         <HeaderBlock>
-          <HeaderLogo  className="_light">
+          <HeaderLogo>
             <a href="" target="_self">
-              <img src="images/logo.png" alt="logo" />
-            </a>
-          </HeaderLogo>
-          <HeaderLogo className="_dark">
-            <a href="" target="_self">
-              <img src="images/logo_dark.png" alt="logo" />
+              <img
+                src={
+                  theme === "dark" ? "images/logo_dark.png" : "images/logo.png"
+                }
+                alt="logo"
+              />
             </a>
           </HeaderLogo>
           <HeaderNav>
-            <HeaderBtn className="_hover01" id="btnMainNew">
+            <HeaderBtn >
               <a href="#popNewCard">Создать новую задачу</a>
             </HeaderBtn>
             <UserProfile />
